@@ -39,6 +39,10 @@ class AdminController extends Controller {
         return view('admin.login');
     }
 
+    public function category(){
+        return view('admin.category');
+    }
+
     public function logout() {
         Auth::guard('admin')->logout();
         return redirect('admin/logout');
