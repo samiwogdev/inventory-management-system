@@ -1,4 +1,4 @@
-@extends('layout.default_layout')
+@extends('admin.layout.default_layout')
 @section('content')
 <div class="login-userheading">
 <h3>Sign In</h3>
