@@ -3,14 +3,14 @@
     <div id="sidebar-menu" class="sidebar-menu">
     <ul>
     <li class="active">
-    <a href="index.html"><img src="assets/img/icons/dashboard.svg" alt="img"><span> Dashboard</span> </a>
+    <a href="{{url('admin/dashboard')}}"><img src="assets/img/icons/dashboard.svg" alt="img"><span> Dashboard</span> </a>
     </li>
     <li class="submenu">
     <a ><img src="assets/img/icons/product.svg" alt="img"><span> Product</span> <span class="menu-arrow"></span></a>
     <ul>
     <li><a href="productlist.html">Product List</a></li>
     
-    <li><a href="categorylist.html">Category List</a></li>
+    <li><a href="{{url('admin/category')}}">Category List</a></li>
     
     
     </ul>

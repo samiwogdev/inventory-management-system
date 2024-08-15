@@ -22,6 +22,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         //Admin Dashboard Route
         Route::get('/dashboard', 'AdminController@dashboard');
         Route::get('/logout', 'AdminController@logout');
+        Route::get('/category', 'AdminController@category');
     });
 });
 
