@@ -22,7 +22,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         // users
         Route::get('/allUsers', 'UserController@viewUsers');
         Route::get('/addUser', 'UserController@addUsers');
-        Route::get('/searchUsers/{id}', 'UserController@searchEditUsers')->name('admin.searchEditUsers');
+        Route::get('/searchUsers/{id}', 'UserController@searchEditUsers')->name('admin.searchUsers');
         Route::post('/saveUser', 'UserController@saveUser');
         Route::put('/editUsers/{id}', 'UserController@updateUser');
         Route::delete('/deleteUser/{id}', 'UserController@deleteUser')->name('admin.deleteUser');
