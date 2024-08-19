@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -11,18 +11,18 @@ class CategoryController extends Controller
     public function showCategoryList()
     {
         $categoryList = Category::get();
-        return view('admin.categoryList', compact('categoryList'));
+        return view('admin.category.categoryList', compact('categoryList'));
     }
 
     public function showAddCategory()
     {
-        return view('admin.addCategory');
+        return view('admin.category.addCategory');
     }
 
     public function showEditCategory($id)
     {
         $category = Category::find($id);
-        return view('admin.editCategory', compact('category'));
+        return view('admin.category.editCategory', compact('category'));
     }
 
 

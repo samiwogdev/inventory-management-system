@@ -8,9 +8,9 @@
                 <li class="submenu">
                     <a><img src="{{ url('assets/img/icons/product.svg')}}" alt="img"><span> Product</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li><a href="productlist.html">Product List</a></li>
+                        <li><a href="productlist.html">Product</a></li>
 
-                        <li><a href="{{url('admin/categoryList')}}">Category List</a></li>
+                        <li><a href="{{url('admin/categoryList')}}">Category</a></li>
                     </ul>
                 </li>
                 <li class="submenu">
@@ -31,13 +31,9 @@
                 <li class="submenu">
                     <a href="javascript:void(0);"><img src="{{ url('assets//img/icons/users1.svg')}}" alt="img"><span> People</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li><a href="customerlist.html">Customer List</a></li>
-                        <li><a href="addcustomer.html">Add Customer </a></li>
-                        <li><a href="supplierlist.html">Supplier List</a></li>
-                        <li><a href="addsupplier.html">Add Supplier </a></li>
-                        <li><a href="">User List</a></li>
-                        <li><a href="adduser.html">Add User</a></li>
-
+                        <li><a href="customerlist.html">Customer</a></li>
+                        <li><a href="{{url('admin/supplierList')}}">Supplier</a></li>
+                        <li><a href="">User</a></li>
                     </ul>
             </ul>
         </div>
