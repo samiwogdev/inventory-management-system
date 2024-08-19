@@ -3,79 +3,102 @@
 namespace App\Http\Controllers;
 use Illuminate\support\Facades\Route;
 use Illuminate\Http\Request;
-use App\Models\userModel;
+use App\Models\UsersModel;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function viewUsers()
     {
-        $users = UserModel::all();
-
-        return view('users.index', compact('users'));
+        $users = UsersModel::all();
+        return view('admin.users.allUsers', compact('users'));
     }
 
-    public function create()
+    public function addUsers()
     {
-        return view('users.create');
+        return view('admin.users.addUser');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function saveUser(Request $request)
     {
-        $request->validate([
-            'username' => 'required|max:30',
-            'email' => 'required',
-            'userRole' => 'required',
-            'password' => 'required',
-        ]);
-        UserModel::create($request->all());
-        return redirect()->route('users.index')
-            ->with('success', 'User created successfully.');
+        if ($request->isMethod('post')) {
+            $userData = $request->validate([
+                'username' => 'required|string|max:30',
+                'email' => 'required|email|max:50|unique:users,email',
+                'userRole' => 'required',
+                'password' => 'required|string|max:100',
+            ]);
+            UsersModel::create([
+                'username' => $userData['username'],
+                'email' => $userData['email'],
+                'userRole' => $userData['userRole'],
+                'password' => $userData['password'],
+            ]);
+
+            return redirect()->back()->with('message', 'User created successfully.');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function searchEditUsers($id)
     {
-        $user = UserModel::find($id);
+        $user = UsersModel::find($id);
 
-        return view('users.show', compact('post'));
+        return view('admin.users.searchUsers', compact('users'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function updateUser(Request $request, $id)
     {
-        $request->validate([
-            'username' => 'required|max:30',
-            'email' => 'required',
-            'userRole' => 'required',
+        // find user by id
+        $users = UsersModel::findOrFail($id);
+        if($request->isMethod('put')){
+            $userData = $request->validate([
+            'username' => 'required|string|max:30',
+            'email' => 'required|email|max:50|unique:users,email',
+            'userRole' => 'required|string',
             'password' => 'required',
         ]);
 
-        $users = UserModel::find($id);
-        $users->update($request->all());
+        // update the users data using validated input
+        $users->update([
+            'username'=> $userData['username'],
+            'email'=> $userData['email'],
+            'userRole'=> $userData['userRole'],
+            'password'=> $userData['password'],
+        ]);
 
-        return redirect()->route('users.index')
-            ->with('success', 'user updated successfully');
+        // redirect
+        return redirect()->route('admin.users.editUsers', ['id' => $users->$id])
+            ->with('message','user updated successfully');
     }
+}
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function deleteUser($id)
     {
-        $users = UserModel::find($id);
-        $users->delete();
+        // Validate that the supplier exists
+        $user = UsersModel::find($id);
 
-        return redirect()->route('users.index')
-            ->with('success', 'User deleted successfully');
+        if (!$user) {
+            return redirect()->back()->with('error', 'user not found');
+        }
+
+        // Proceed with deletion if user exists
+        $user->delete();
+
+        return redirect()->back()->with('message', 'user deleted successfully');
     }
 }
+

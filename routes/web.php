@@ -19,6 +19,14 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('/dashboard', 'AdminController@dashboard');
         Route::get('/logout', 'AdminController@logout');
 
+        // users
+        Route::get('/allUsers', 'UserController@viewUsers');
+        Route::get('/addUser', 'UserController@addUsers');
+        Route::get('/searchUsers/{id}', 'UserController@searchEditUsers')->name('admin.searchEditUsers');
+        Route::post('/saveUser', 'UserController@saveUser');
+        Route::put('/editUsers/{id}', 'UserController@updateUser');
+        Route::delete('/deleteUser/{id}', 'UserController@deleteUser')->name('admin.deleteUser');
+
         //category
         Route::get('/categoryList', 'CategoryController@showCategoryList');
         Route::get('/addCategory', 'CategoryController@showAddCategory');
@@ -34,6 +42,14 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('/addSupplier', 'SupplierController@store');
         Route::put('/updateSupplier/{id}', 'SupplierController@updateSupplier');
         Route::delete('/deleteSupplier/{id}', 'SupplierController@deleteSupplier')->name('admin.deleteSupplier');
+
+        //customer
+        Route::get('/viewCustomer', 'CustomersController@viewCustomers');
+        Route::get('/addCustomer', 'CustomersController@addCustomers');
+        Route::get('/editCustomer/{id}', 'CustomersController@searchEditCustomer')->name('admin.editCustomer');
+        Route::post('/saveCustomer', 'CustomersController@storeCustomer');
+        Route::put('/modifyCustomer/{id}', 'CustomersController@updateCustomer');
+        Route::delete('/deleteCustomer/{id}', 'CustomersController@deleteCustomer')->name('admin.deleteCustomer');
     });
 });
 
