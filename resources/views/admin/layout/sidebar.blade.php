@@ -33,7 +33,7 @@
                     <ul>
                         <li><a href="customerlist.html">Customer</a></li>
                         <li><a href="{{url('admin/supplierList')}}">Supplier</a></li>
-                        <li><a href="">User</a></li>
+                        <li><a href="{{url('admin/allUsers')}}">Users</a></li>
                     </ul>
             </ul>
         </div>

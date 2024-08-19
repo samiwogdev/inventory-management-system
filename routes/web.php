@@ -20,12 +20,12 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('/logout', 'AdminController@logout');
 
         // users
-        Route::get('/allUsers', 'UserController@viewUsers');
-        Route::get('/addUser', 'UserController@addUsers');
-        Route::get('/searchUsers/{id}', 'UserController@searchEditUsers')->name('admin.searchUsers');
-        Route::post('/saveUser', 'UserController@saveUser');
-        Route::put('/editUsers/{id}', 'UserController@updateUser');
-        Route::delete('/deleteUser/{id}', 'UserController@deleteUser')->name('admin.deleteUser');
+        Route::get('/allUsers', 'UsersControllers@viewUsers');
+        Route::get('/addUser', 'UsersControllers@showAddUsers');
+        Route::get('/editUser/{id}', 'UsersControllers@showEditUsers')->name('admin.editUser');
+        Route::post('/addUser', 'UsersControllers@saveUser');
+        Route::put('/updateUsers/{id}', 'UsersControllers@updateUser');
+        Route::delete('/deleteUser/{id}', 'UsersControllers@deleteUser')->name('admin.deleteUser');
 
         //category
         Route::get('/categoryList', 'CategoryController@showCategoryList');

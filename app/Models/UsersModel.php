@@ -11,7 +11,7 @@ class UsersModel extends Model
 
     protected $guard = 'admin';
 
-
+    protected $table = 'users';
     protected $fillable = [
         'username',
         'email',
