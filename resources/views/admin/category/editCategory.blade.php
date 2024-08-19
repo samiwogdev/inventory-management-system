@@ -4,7 +4,7 @@
     <div class="content">
         <div class="page-header">
             <div class="page-title">
-                <h4>Product Edit Category</h4>
+                <h4>Manage Category</h4>
                 <h6>Edit a product Category</h6>
             </div>
         </div>
@@ -60,7 +60,7 @@
 
                         <div class="col-lg-12">
                             <button type="submit" class="btn btn-submit me-2">Submit</button>
-                            <a href="{{ url('admin/categoryList') }}" class="btn btn-cancel">Cancel</a>
+                            <a href="{{ url('admin/categoryList') }}" class="btn btn-cancel">Back</a>
                         </div>
                     </div>
                 </form>

@@ -81,11 +81,7 @@
                                         <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="Delete">
                                     </a>
                                 </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <!-- Delete Modal -->
+                                                    <!-- Delete Modal -->
                     <div class="modal fade" id="deleteModal{{ $category->id }}" tabindex="-1"
                         aria-labelledby="delete_modal" aria-hidden="true">
                         <form action="{{ route('admin.deleteCategory', $category->id) }}" method="post">
@@ -109,6 +105,10 @@
                             </div>
                         </form>
                     </div>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
                 @endif
             </div>

@@ -46,7 +46,7 @@
                         </div>
                         <div class="col-lg-12">
                             <input type="submit" name="category_but" value="Submit" class="btn btn-submit me-2">
-                            <a href="{{ url('admin/categoryList') }}" class="btn btn-cancel">View Category List</a>
+                            <a href="{{ url('admin/categoryList') }}" class="btn btn-cancel">View Category</a>
                         </div>
                     </form>
                 </div>
