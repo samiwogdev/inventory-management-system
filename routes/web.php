@@ -34,6 +34,14 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('/addSupplier', 'SupplierController@store');
         Route::put('/updateSupplier/{id}', 'SupplierController@updateSupplier');
         Route::delete('/deleteSupplier/{id}', 'SupplierController@deleteSupplier')->name('admin.deleteSupplier');
+
+        //product
+        Route::get('/productList', 'ProductController@showProductList');
+        Route::get('/addProduct', 'ProductController@showAddProduct');
+        Route::get('/editProduct/{id}', 'ProductController@showEditProduct')->name('admin.editProduct');
+        Route::post('/addProduct', 'ProductController@store');
+        Route::put('/updateProduct/{id}', 'ProductController@updateProduct');
+        Route::delete('/deleteProduct/{id}', 'ProductController@deleteProduct')->name('admin.deleteProduct');
     });
 });
 
