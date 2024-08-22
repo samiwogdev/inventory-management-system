@@ -22,8 +22,8 @@ class CustomersController extends Controller
 
     public function searchEditCustomer($id)
     {
-        $customers = CustomerModel::find($id);
-        return view('admin.customers.editCustomer', compact('customers'));
+        $customer = CustomerModel::find($id);
+        return view('admin.customers.editCustomer', compact('customer'));
     }
 
 
@@ -47,7 +47,7 @@ class CustomersController extends Controller
             ]);
 
             // Redirect
-            return redirect()->route('admin.customers.modifyCustomer', ['id' => $customers->id])
+            return redirect()->route('admin.editCustomer', ['id' => $customers->id])
                 ->with('message', 'customer updated successfully');
         }
     }

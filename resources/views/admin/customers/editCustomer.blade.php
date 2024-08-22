@@ -4,7 +4,7 @@
     <div class="content">
         <div class="page-header">
             <div class="page-title">
-                <h4>Customers</h4>
+                <h4>customer</h4>
                 <h6>Edit Customer Details</h6>
             </div>
         </div>
@@ -30,36 +30,36 @@
 
         <div class="card">
             <div class="card-body">
-                @if($users)
-                    <form action="{{ url('admin/editCustomer/' . $customers->id) }}" method="POST">
+                @if($customer)
+                    <form action="{{ url('admin/editCustomer/' . $customer->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
                         <div class="row">
-                            <div class="col-lg-4 col-sm-6 col-12">
+                            <div class="col-lg-12 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="username">Name</label>
                                     <input type="text" name="name" class="form-control"
-                                        value="{{ old('name', $customers->name) }}">
+                                        value="{{ old('name', $customer->name) }}">
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-sm-6 col-12">
+                            <div class="col-lg-12 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="address">Address</label>
                                     <input type="text" id="SupplierPhone" name="address" class="form-control"
-                                        value="{{ old('address', $customers->address) }}">
+                                        value="{{ old('address', $customer->address) }}">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="email" name="email" class="form-control"
-                                        value="{{ old('email', $customers->email) }}">
+                                        value="{{ old('email', $customer->email) }}">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <button type="submit" class="btn btn-submit me-2">Submit</button>
-                                <a href="{{ url('admin/allUsers') }}" class="btn btn-cancel">Cancel</a>
+                                <a href="{{ url('admin/viewCustomer') }}" class="btn btn-cancel">Back</a>
                             </div>
                         </div>
                     </form>
@@ -76,3 +76,4 @@
 
     </div>
 </div>
+@endsection
