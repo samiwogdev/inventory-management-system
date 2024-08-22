@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\CustomerModel;
+use App\Http\Controllers\Controller;
 
 class CustomersController extends Controller
 {
@@ -11,12 +12,12 @@ class CustomersController extends Controller
     public function viewCustomers()
     {
         $Customers = CustomerModel::get();
-        return view('admin.customer.viewCustomer', compact('Customers'));
+        return view('admin.customers.viewCustomer', compact('Customers'));
     }
 
     public function addCustomers()
     {
-        return view('admin.customer.addCustomer');
+        return view('admin.customers.addCustomer');
     }
 
     public function searchEditCustomer($id)

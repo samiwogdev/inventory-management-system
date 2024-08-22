@@ -23,16 +23,14 @@
                 <li class="submenu">
                     <a href="javascript:void(0);"><img src="{{ url('assets//img/icons/purchase1.svg')}}" alt="img"><span> Order</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li><a href="purchaselist.html">Order List</a></li>
-                        <li><a href="addpurchase.html">Add Order</a></li>
-
+                        <li><a href="{{url('admin/orders')}}">Order List</a></li>
                     </ul>
                 </li>
                 <li class="submenu">
                     <a href="javascript:void(0);"><img src="{{ url('assets//img/icons/users1.svg')}}" alt="img"><span> People</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li><a href="customerlist.html">Customer</a></li>
-                        <li><a href="{{url('admin/supplierList')}}">Supplier</a></li>
+                        <li><a href="{{url('admin/viewCustomer')}}">Customers</a></li>
+                        <li><a href="{{url('admin/supplierList')}}">Suppliers</a></li>
                         <li><a href="{{url('admin/allUsers')}}">Users</a></li>
                     </ul>
             </ul>
