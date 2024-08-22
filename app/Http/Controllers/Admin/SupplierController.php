@@ -57,7 +57,7 @@ class SupplierController extends Controller
             ]);
 
             // Redirect to the edit page or another appropriate page
-            return redirect()->route('admin.supplier.editSupplier', ['id' => $supplier->id])
+            return redirect()->route('admin.editSupplier', ['id' => $supplier->id])
                 ->with('message', 'supplier updated successfully');
         }
     }

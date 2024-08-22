@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Auth;
-use Hash;
 
 class AdminController extends Controller {
 
