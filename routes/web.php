@@ -19,6 +19,14 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('/dashboard', 'AdminController@dashboard');
         Route::get('/logout', 'AdminController@logout');
 
+        // users
+        Route::get('/allUsers', 'UsersControllers@viewUsers');
+        Route::get('/addUser', 'UsersControllers@showAddUsers');
+        Route::get('/editUser/{id}', 'UsersControllers@showEditUsers')->name('admin.editUser');
+        Route::post('/addUser', 'UsersControllers@saveUser');
+        Route::put('/updateUsers/{id}', 'UsersControllers@updateUser');
+        Route::delete('/deleteUser/{id}', 'UsersControllers@deleteUser')->name('admin.deleteUser');
+
         //category
         Route::get('/categoryList', 'CategoryController@showCategoryList');
         Route::get('/addCategory', 'CategoryController@showAddCategory');
@@ -34,7 +42,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('/addSupplier', 'SupplierController@store');
         Route::put('/updateSupplier/{id}', 'SupplierController@updateSupplier');
         Route::delete('/deleteSupplier/{id}', 'SupplierController@deleteSupplier')->name('admin.deleteSupplier');
-
+      
         //product
         Route::get('/productList', 'ProductController@showProductList');
         Route::get('/addProduct', 'ProductController@showAddProduct');
@@ -42,6 +50,16 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('/addProduct', 'ProductController@store');
         Route::put('/updateProduct/{id}', 'ProductController@updateProduct');
         Route::delete('/deleteProduct/{id}', 'ProductController@deleteProduct')->name('admin.deleteProduct');
+
+        //customer
+        Route::get('/viewCustomer', 'CustomersController@viewCustomers');
+        Route::get('/addCustomer', 'CustomersController@addCustomers');
+        Route::get('/editCustomer/{id}', 'CustomersController@searchEditCustomer')->name('admin.editCustomer');
+        Route::post('/saveCustomer', 'CustomersController@storeCustomer');
+        Route::put('/modifyCustomer/{id}', 'CustomersController@updateCustomer');
+        Route::delete('/deleteCustomer/{id}', 'CustomersController@deleteCustomer')->name('admin.deleteCustomer');
+
+
     });
 });
 

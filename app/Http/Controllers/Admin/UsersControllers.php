@@ -1,24 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
-use Illuminate\support\Facades\Route;
-use Illuminate\Http\Request;
-use App\Models\UsersModel;
+namespace App\Http\Controllers\Admin;
 
-class UserController extends Controller
+use App\Models\UsersModel;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class UsersControllers extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function viewUsers()
     {
-        $users = UsersModel::all();
-        return view('admin.users.allUsers', compact('users'));
+        $allusers = UsersModel::get();
+        return view('admin.users.allUsers', compact('allusers'));
     }
 
-    public function addUsers()
+    public function showAddUsers()
     {
-        return view('admin.users.addUser');
+        return view('admin.users.createUser');
     }
 
     /**
@@ -47,11 +48,11 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function searchEditUsers($id)
+    public function showEditUsers($id)
     {
-        $user = UsersModel::find($id);
+        $users = UsersModel::find($id);
 
-        return view('admin.users.searchUsers', compact('users'));
+        return view('admin.users.editUser', compact('users'));
     }
 
     /**
@@ -61,27 +62,28 @@ class UserController extends Controller
     {
         // find user by id
         $users = UsersModel::findOrFail($id);
-        if($request->isMethod('put')){
+        if ($request->isMethod('put')) {
             $userData = $request->validate([
-            'username' => 'required|string|max:30',
-            'email' => 'required|email|max:50|unique:users,email',
-            'userRole' => 'required|string',
-            'password' => 'required',
-        ]);
+                'username' => 'required|string|max:30',
+                'email' => 'required|email|max:50|unique:users,email',
+                'userRole' => 'required|string',
+                'password' => 'required',
+            ]);
 
-        // update the users data using validated input
-        $users->update([
-            'username'=> $userData['username'],
-            'email'=> $userData['email'],
-            'userRole'=> $userData['userRole'],
-            'password'=> $userData['password'],
-        ]);
+            // update the users data using validated input
+            $users->update([
+                'username' => $userData['username'],
+                'email' => $userData['email'],
+                'userRole' => $userData['userRole'],
+                'password' => $userData['password'],
+            ]);
 
-        // redirect
-        return redirect()->route('admin.users.editUsers', ['id' => $users->$id])
-            ->with('message','user updated successfully');
+            // redirect
+            return redirect()->route('admin.editUser', ['id' => $users->id])
+            // return redirect()->route('admin.users.editUser', ['id' => $users->$id])
+                ->with('message', 'user updated successfully');
+        }
     }
-}
 
     /**
      * Remove the specified resource from storage.
