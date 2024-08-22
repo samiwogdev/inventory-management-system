@@ -70,16 +70,7 @@
                                 <textarea name="description" class="form-control" rows="4">{{ old('description') }}</textarea>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <select name="status" class="form-control" required>
-                                    <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>Pending</option>
-                                    <option value="approved" {{ old('status') == 'approved' ? 'selected' : '' }}>Approved</option>
-                                    <option value="delivered" {{ old('status') == 'delivered' ? 'selected' : '' }}>Delivered</option>
-                                </select>
-                            </div>
-                        </div>
+
                         <div class="col-lg-4 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="orderDate">Order Date</label>

@@ -28,6 +28,11 @@ class OrderModel extends Model
         return $this->belongsTo(CustomerModel::class, 'customerId');
     }
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'productId');
+    }
+
     // defining a one-to-many relationship between the Order and Product models, 
     // where one product can be associated with multiple orders.
     // public function product()
