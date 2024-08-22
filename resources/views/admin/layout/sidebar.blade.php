@@ -1,14 +1,14 @@
-<div class="sidebar" id="sidebar">
+<div class="sidebar shadow" id="sidebar">
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
                 <li class="active">
-                    <a href="{{url('admin/dashboard')}}"><img src="assets/img/icons/dashboard.svg" alt="img"><span> Dashboard</span> </a>
+                    <a href="{{url('admin/dashboard')}}"><img src="{{ url('assets/img/icons/dashboard.svg')}}" alt="img"><span> Dashboard</span> </a>
                 </li>
                 <li class="submenu">
                     <a><img src="{{ url('assets/img/icons/product.svg')}}" alt="img"><span> Product</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li><a href="productlist.html">Product</a></li>
+                        <li><a href="{{url('admin/productList')}}">Product</a></li>
 
                         <li><a href="{{url('admin/categoryList')}}">Category</a></li>
                     </ul>

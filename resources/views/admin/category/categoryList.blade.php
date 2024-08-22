@@ -4,8 +4,8 @@
     <div class="content">
         <div class="page-header">
             <div class="page-title">
-                <h4>Product Category list</h4>
-                <h6>View/Search product Category</h6>
+                <h4>Category List</h4>
+                <h6>View/Search Product Category</h6>
             </div>
             <div class="page-btn">
                 <a href="{{url('admin/addCategory')}}" class="btn btn-added">
@@ -26,7 +26,6 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
-
         <div class="card">
             <div class="card-body">
                 <div class="table-top">
