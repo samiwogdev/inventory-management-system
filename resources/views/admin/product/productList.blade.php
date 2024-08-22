@@ -4,12 +4,12 @@
     <div class="content">
         <div class="page-header">
             <div class="page-title">
-                <h4>Supplier List</h4>
-                <h6>View/Search Product Supplier</h6>
+                <h4>Product List</h4>
+                <h6>View/Search Product List</h6>
             </div>
             <div class="page-btn">
-                <a href="{{url('admin/addSupplier')}}" class="btn btn-added">
-                    <img src="assets/img/icons/plus.svg" class="me-1" alt="img">Add Supplier
+                <a href="{{url('admin/addProduct')}}" class="btn btn-added">
+                    <img src="assets/img/icons/plus.svg" class="me-1" alt="img">Add Product
                 </a>
             </div>
         </div>
@@ -26,7 +26,6 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
-
         <div class="card">
             <div class="card-body">
                 <div class="table-top">
@@ -55,60 +54,68 @@
                         </ul>
                     </div>
                 </div>
-                @if(!$supplierList->isEmpty())
+                @if(!$productList->isEmpty())
                 <div class="table-responsive">
                     <table class="table datanew">
                         <thead>
                             <tr>
                                 <th>SN</th>
+                                <th>Supplier</th>
+                                <th>Category</th>
                                 <th>Name</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Address</th>
+                                <th>SKU</th>
+                                <th>unit Price</th>
+                                <th>Quantity</th>
+                                <th>Reorder Level</th>
+                                <th>Description</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($supplierList as $index => $supplier)
+                            @foreach($productList as $index => $product)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $supplier->name }}</td>
-                                <td>{{ $supplier->phone }}</td>
-                                <td>{{ $supplier->email }}</td>
-                                <td>{{ $supplier->address }}</td>
+                                <td>{{ $product->supplier->name }}</td>
+                                <td>{{ $product->category->name }}</td>
+                                <td>{{ $product->name }}</td>
+                                <td>{{ $product->sku }}</td>
+                                <td>{{ $product->unitPrice }}</td>
+                                <td>{{ $product->quantity }}</td>
+                                <td>{{ $product->reorderLevel }}</td>
+                                <td>{{ $product->description }}</td>
                                 <td>
-                                    <a class="me-3" href="{{ url('admin/editSupplier/' . $supplier->id) }}">
+                                    <a class="me-3" href="{{ url('admin/editProduct/' . $product->id) }}">
                                         <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="Edit">
                                     </a>
                                     <a class="me-3" href="javascript:void(0);" data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal{{ $supplier->id }}">
+                                        data-bs-target="#deleteModal{{ $product->id }}">
                                         <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="Delete">
                                     </a>
                                 </td>
-                                <!-- Delete Modal -->
-                                <div class="modal fade" id="deleteModal{{ $supplier->id }}" tabindex="-1"
-                                    aria-labelledby="delete_modal" aria-hidden="true">
-                                    <form action="{{ route('admin.deleteSupplier', $supplier->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="delete_modal">Are you Sure ?</h5>
-                                                    <button type="button" class="btn-close"
-                                                        data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body" style="font-size: 17px;">You won't be able to revert this!</div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit"
-                                                        class="btn btn-danger">Yes, delete it!</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                                    <!-- Delete Modal -->
+                    <div class="modal fade" id="deleteModal{{ $product->id }}" tabindex="-1"
+                        aria-labelledby="delete_modal" aria-hidden="true">
+                        <form action="{{ route('admin.deleteProduct', $product->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="delete_modal">Are you Sure ?</h5>
+                                        <button type="button" class="btn-close"
+                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" style="font-size: 17px;">You won't be able to revert this!</div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit"
+                                            class="btn btn-danger">Yes, delete it!</button>
+                                    </div>
                                 </div>
+                            </div>
+                        </form>
+                    </div>
                             </tr>
                             @endforeach
                         </tbody>
