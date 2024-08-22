@@ -11,6 +11,7 @@ class CustomerModel extends Model
 
     protected $guard = 'admin';
 
+    protected $table = 'customers';
 
     protected $fillable = [
         'name',

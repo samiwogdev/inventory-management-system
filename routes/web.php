@@ -56,9 +56,16 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('/addCustomer', 'CustomersController@addCustomers');
         Route::get('/editCustomer/{id}', 'CustomersController@searchEditCustomer')->name('admin.editCustomer');
         Route::post('/saveCustomer', 'CustomersController@storeCustomer');
-        Route::put('/modifyCustomer/{id}', 'CustomersController@updateCustomer');
+        Route::put('/editCustomer/{id}', 'CustomersController@updateCustomer');
         Route::delete('/deleteCustomer/{id}', 'CustomersController@deleteCustomer')->name('admin.deleteCustomer');
 
+        // orders
+        Route::get('/orders', 'OrdersController@viewOrders');
+        Route::get('/addOrder', 'OrdersController@showAddOrder');
+        Route::get('/editOrder/{id}', 'OrdersController@showEditOrder')->name('admin.editOrder');
+        Route::post('/addOrder', 'OrdersController@createOrder');
+        Route::put('/updateOrder/{id}', 'OrdersController@updateOrder');
+        Route::delete('/deleteOrder/{id}', 'OrdersController@deleteOrder')->name('admin.deleteOrder');
 
     });
 });
