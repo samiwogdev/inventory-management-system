@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\OrderModel;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 
 class OrdersController extends Controller
 {
@@ -26,9 +27,8 @@ class OrdersController extends Controller
     public function showAddOrder()
     {
         $customers = CustomerModel::all();
-        // $products = ProductModel::all();
-        // return view('admin.orders.createOrder');
-        return view('admin.orders.createOrder', compact('customers'));
+        $products = Product::all();
+        return view('admin.orders.createOrder', compact('customers', 'products'));
     }
 
     /**
@@ -50,6 +50,7 @@ class OrdersController extends Controller
                 'productId' => $orderData['productId'],
                 'quantity' => $orderData['quantity'],
                 'description' => $orderData['description'],
+                'status' => 'pending',
                 'orderDate' => $orderData['orderDate'],
             ]);
 
