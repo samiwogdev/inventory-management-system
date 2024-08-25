@@ -79,7 +79,7 @@
 
                         <div class="col-lg-12">
                             <button type="submit" class="btn btn-submit me-2">Submit</button>
-                            <a href="{{ url('admin/supplierList') }}" class="btn btn-cancel">Cancel</a>
+                            <a href="{{ url('admin/supplierList') }}" class="btn btn-cancel">Back</a>
                         </div>
                     </div>
                 </form>

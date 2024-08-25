@@ -91,36 +91,7 @@
                                             <a class="me-3" href="{{ route('admin.editOrder', $order->id) }}">
                                                 <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="Edit">
                                             </a>
-                                            <a class="me-3" href="javascript:void(0);" data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal{{ $order->id }}">
-                                                <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="Delete">
-                                            </a>
                                         </td>
-                                        <!-- Delete Modal -->
-                                        <div class="modal fade" id="deleteModal{{ $order->id }}" tabindex="-1"
-                                            aria-labelledby="delete_modal" aria-hidden="true">
-                                            <form action="{{ route('admin.deleteOrder', $order->id) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="delete_modal">Are you Sure ?</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body" style="font-size: 17px;">You won't be able to
-                                                            revert this!</div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-danger">Yes, delete
-                                                                it!</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
                                     </tr>
                                 @endforeach
                             </tbody>

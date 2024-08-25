@@ -68,7 +68,7 @@
 
         <li class="nav-item dropdown has-arrow main-drop">
             <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
-                <span class="user-img"><img src="{{ url('assets/img/profiles/avator1.jpg') }}" alt="">
+                <span class="user-img"><img src="{{ url('assets/img/profiles/avator1.jpg') }}" style="width: 35px;" alt="">
                     <span class="status online"></span></span>
             </a>
             <div class="dropdown-menu menu-drop-user">
@@ -82,8 +82,8 @@
                         </div>
                     </div>
                     <hr class="m-0">
-<!--                    <a class="dropdown-item" href="profile.html"> <i class="me-2" data-feather="user"></i> My Profile</a>
-                    <a class="dropdown-item" href="generalsettings.html"><i class="me-2" data-feather="settings"></i>Settings</a>-->
+                   <a class="dropdown-item" href="{{ url('admin/editUser') }}"> <i class="me-2" data-feather="user"></i> My Profile</a>
+                  <!--   <a class="dropdown-item" href="generalsettings.html"><i class="me-2" data-feather="settings"></i>Settings</a>-->
                     <hr class="m-0">
                     <a class="dropdown-item logout pb-0" href="{{ url('admin/logout') }}"><img src="{{ url('assets/img/icons/log-out.svg') }}" class="me-2" alt="img">Logout</a>
                 </div>
