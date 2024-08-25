@@ -5,14 +5,15 @@
                 <li class="active">
                     <a href="{{url('admin/dashboard')}}"><img src="{{ url('assets/img/icons/dashboard.svg')}}" alt="img"><span> Dashboard</span> </a>
                 </li>
+                @if(Auth::guard('admin')->user()->status == 2)
                 <li class="submenu">
                     <a><img src="{{ url('assets/img/icons/product.svg')}}" alt="img"><span> Product</span> <span class="menu-arrow"></span></a>
-                    <ul>
+                    <ul>                
                         <li><a href="{{url('admin/productList')}}">Product</a></li>
-
                         <li><a href="{{url('admin/categoryList')}}">Category</a></li>
                     </ul>
                 </li>
+                @endif
                 <li class="submenu">
                     <a href="javascript:void(0);"><img src="{{ url('assets//img/icons/sales1.svg')}}" alt="img"><span> Sales</span> <span class="menu-arrow"></span></a>
                     <ul>
@@ -29,8 +30,10 @@
                 <li class="submenu">
                     <a href="javascript:void(0);"><img src="{{ url('assets//img/icons/users1.svg')}}" alt="img"><span> People</span> <span class="menu-arrow"></span></a>
                     <ul>
+                    @if(Auth::guard('admin')->user()->status == 2)
                         <li><a href="{{url('admin/viewCustomer')}}">Customers</a></li>
                         <li><a href="{{url('admin/supplierList')}}">Suppliers</a></li>
+                    @endif
                         <li><a href="{{url('admin/allUsers')}}">Users</a></li>
                     </ul>
             </ul>
