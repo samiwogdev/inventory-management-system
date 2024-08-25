@@ -34,7 +34,7 @@ class CustomersController extends Controller
 
         if ($request->isMethod('put')) {
             $customerData = $request->validate([
-                'name' => 'required|string|max:100|unique:customers,name',
+                'name' => 'required|string|max:100',
                 'address' => 'required|string|max:100',
                 'email' => 'required|email|max:50|unique:customers,email',
             ]);

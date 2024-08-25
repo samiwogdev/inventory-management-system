@@ -36,7 +36,7 @@ class SupplierController extends Controller
 
             // Validate the request data
             $validatedData = $request->validate([
-                'name' => 'required|string|max:100|unique:suppliers,name',
+                'name' => 'required|string|max:100',
                 'phone' => [
                     'required',
                     'string',

@@ -64,7 +64,9 @@ class OrdersController extends Controller
     public function showEditOrder(Request $request, string $id)
     {
         $order = OrderModel::find($id);
-        return view('admin.orders.editOrder', compact('orders'));
+        $customers = CustomerModel::all();
+        $products = Product::all();
+        return view('admin.orders.editOrder', compact('order', 'customers', 'products'));
     }
 
     // edit an order
@@ -78,7 +80,6 @@ class OrdersController extends Controller
                 'productId' => 'required|exists:products,id',
                 'quantity' => 'required|integer|min:1',
                 'description' => 'required|string',
-                'status' => 'required|in:pending,approved,delivered',
                 'orderDate' => 'required|date',
             ]);
 
@@ -88,11 +89,10 @@ class OrdersController extends Controller
                 'productId' => $orders['productId'],
                 'quantity' => $orders['quantity'],
                 'description' => $orders['description'],
-                'status' => $orders['status'],
                 'orderDate' => $orders['orderDate'],
             ]);
 
-            return redirect()->route('admin.editOrder', ['id' => $order->$id])
+            return redirect()->route('admin.editOrder', ['id' => $order->id])
                 ->with('message', 'order updated successfully');
         }
     }

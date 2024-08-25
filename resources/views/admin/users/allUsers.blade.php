@@ -60,22 +60,23 @@
                             <thead>
                                 <tr>
                                     <th>SN</th>
-                                    <th>Username</th>
+                                    <th>Name</th>
+                                    <th>Type</th>
                                     <th>Email</th>
-                                    <th>Role</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($allusers as $index => $user)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $user->username }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->type }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->userRole }}</td>
-                                        <td>
-                                            <a class="me-3" href="{{ url('admin/editUser/' . $user->id) }}">
+                                        <td >
+                                            <!-- <a class="me-3" href="{{ url('admin/editUser/' . $user->id) }}">
                                                 <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="Edit">
-                                            </a>
+                                            </a> -->
                                             <a class="me-3" href="javascript:void(0);" data-bs-toggle="modal"
                                                 data-bs-target="#deleteModal{{ $user->id }}">
                                                 <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="Delete">

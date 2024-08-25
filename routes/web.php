@@ -16,16 +16,16 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
     //Add middleware
     Route::group(['middleware' => ['admin']], function () {
 
+        //User
         Route::get('/dashboard', 'AdminController@dashboard');
         Route::get('/logout', 'AdminController@logout');
-
-        // users
-        Route::get('/allUsers', 'UsersControllers@viewUsers');
-        Route::get('/addUser', 'UsersControllers@showAddUsers');
-        Route::get('/editUser/{id}', 'UsersControllers@showEditUsers')->name('admin.editUser');
-        Route::post('/addUser', 'UsersControllers@saveUser');
-        Route::put('/updateUsers/{id}', 'UsersControllers@updateUser');
-        Route::delete('/deleteUser/{id}', 'UsersControllers@deleteUser')->name('admin.deleteUser');
+        Route::post('/check-current-password', 'AdminController@checkAdminPassword');
+        Route::get('/editUser', 'AdminController@showEditUsers')->name('admin.editUser');;
+        Route::put('updateUsers', 'AdminController@updateAdminPassword');
+        Route::get('/allUsers', 'AdminController@viewUsers');
+        Route::get('/addUser', 'AdminController@showAddUsers');
+        Route::post('/addUser', 'AdminController@saveUser');
+        Route::delete('/deleteUser/{id}', 'AdminController@deleteUser')->name('admin.deleteUser');
 
         //category
         Route::get('/categoryList', 'CategoryController@showCategoryList');

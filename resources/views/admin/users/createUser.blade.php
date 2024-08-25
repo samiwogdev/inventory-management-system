@@ -34,20 +34,14 @@
                     <form action="{{ url('admin/addUser') }}" method="POST">@csrf
                         <div class="col-lg-12 col-sm-6 col-12">
                             <div class="form-group">
-                                <label>Username</label>
-                                <input type="text" name="username">
+                                <label>Name</label>
+                                <input type="text" name="name">
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Email</label>
                                 <input type="text" name="email">
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label>Role</label>
-                                <input type="text" name="userRole">
                             </div>
                         </div>
                         <div class="col-lg-12">

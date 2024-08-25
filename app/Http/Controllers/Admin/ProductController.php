@@ -43,7 +43,7 @@ class ProductController extends Controller
             $validatedData = $request->validate([
                 'supplier_id' => 'required|integer|exists:suppliers,id|not_in:-1',
                 'category_id' => 'required|integer|exists:categories,id|not_in:-1',
-                'name' => 'required|string|max:100|unique:products,name',
+                'name' => 'required|string|max:100',
                 'sku' => 'required|string|max:50',
                 'unitPrice' => 'required|numeric|min:0',
                 'quantity' => 'required|integer|min:0',

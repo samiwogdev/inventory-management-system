@@ -80,7 +80,7 @@
 
                         <div class="col-lg-12">
                             <button type="submit" class="btn btn-submit me-2">Create</button>
-                            <a href="{{ url('admin/orders') }}" class="btn btn-cancel">Cancel</a>
+                            <a href="{{ url('admin/orders') }}" class="btn btn-cancel">View Orders</a>
                         </div>
                     </div>
                 </form>
