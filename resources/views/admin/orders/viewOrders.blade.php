@@ -14,17 +14,17 @@
             </div>
         </div>
         @if (Session::has('message'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ Session::get('message') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ Session::get('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         @endif
 
         @if (Session::has('error'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ Session::get('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ Session::get('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         @endif
 
         <div class="card">
@@ -55,48 +55,69 @@
                     </div>
                 </div>
                 @if(!$orders->isEmpty())
-                    <div class="table-responsive">
-                        <table class="table datanew">
-                            <thead>
-                                <tr>
-                                    <th>SN</th>
-                                    <th>Customer</th>
-                                    <th>Product</th>
-                                    <th>Quantity</th>
-                                    <th>Description</th>
-                                    <th>Status</th>
-                                    <th>Order Date</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($orders as $index => $order)
-                                    <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $order->customer->name }}</td>
-                                        <td>{{ $order->product->name }}</td>
-                                        <td>{{ $order->quantity }}</td>
-                                        <td>{{ $order->description }}</td>
-                                        <td>
-                                            @if($order->status == 'pending')
-                                                <span class="badge bg-warning">{{ $order->status }}</span>
-                                            @elseif($order->status == 'approved')
-                                                <span class="badge bg-primary">{{ $order->status }}</span>
-                                            @else
-                                                <span class="badge bg-success">{{ $order->status }}</span>
-                                            @endif
-                                        </td>
-                                        <td>{{ $order->orderDate }}</td>
-                                        <td>
-                                            <a class="me-3" href="{{ route('admin.editOrder', $order->id) }}">
-                                                <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="Edit">
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="table-responsive">
+                    <table class="table datanew">
+                        <thead>
+                            <tr>
+                                <th>SN</th>
+                                <th>Customer</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th>Order Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($orders as $index => $order)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $order->customer->name }}</td>
+                                <td>{{ $order->product->name }}</td>
+                                <td>{{ $order->quantity }}</td>
+                                <td>{{ $order->description }}</td>
+                                <td>
+                                    @if($order->status == 'pending')
+                                    <span class="badge bg-warning">{{ $order->status }}</span>
+                                    @elseif($order->status == 'approved')
+                                    <span class="badge bg-primary">{{ $order->status }}</span>
+                                    @else
+                                    <span class="badge bg-success">{{ $order->status }}</span>
+                                    @endif
+                                </td>
+                                <td>{{ $order->orderDate }}</td>
+                                <td>
+                                    @if(Auth::guard('admin')->user()->status == 2 && $order->status == 'pending')
+                                    <a class="me-3" href="{{ route('admin.editOrder', $order->id) }}">
+                                        <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="Edit">
+                                    </a>
+                                    @endif
+                                    @if($order->status == 'approved')
+                                    <form id="form-{{ $order->id }}" action="{{ route('admin.updateStatus', $order->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <a href="javascript:void(0);"  onclick="document.getElementById('form-{{ $order->id }}').submit();" style="color: green;">
+                                            <img src="{{ asset('assets/img/icons/checked.png') }}" style="width: 30px;" class="icon-success" alt="approve">
+                                        </a>
+                                    </form>
+                                    @endif
+
+                                    @if(Auth::guard('admin')->user()->status == 1 && $order->status == 'pending')
+                                    <form id="form-{{ $order->id }}" action="{{ route('admin.updateStatus', $order->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <a href="javascript:void(0);"  onclick="document.getElementById('form-{{ $order->id }}').submit();" style="color: green;">
+                                            <img src="{{ asset('assets/img/icons/checked.png') }}" style="width: 30px;" class="icon-success" alt="approve">
+                                        </a>
+                                    </form>
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
                 @endif
             </div>
         </div>

@@ -59,12 +59,13 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::put('/editCustomer/{id}', 'CustomersController@updateCustomer');
         Route::delete('/deleteCustomer/{id}', 'CustomersController@deleteCustomer')->name('admin.deleteCustomer');
 
-        // orders
+        // orders 
         Route::get('/orders', 'OrdersController@viewOrders');
         Route::get('/addOrder', 'OrdersController@showAddOrder');
         Route::get('/editOrder/{id}', 'OrdersController@showEditOrder')->name('admin.editOrder');
         Route::post('/addOrder', 'OrdersController@createOrder');
         Route::put('/updateOrder/{id}', 'OrdersController@updateOrder');
+        Route::put('/updateStatus/{id}', 'OrdersController@updateStatus')->name('admin.updateStatus');;
         Route::delete('/deleteOrder/{id}', 'OrdersController@deleteOrder')->name('admin.deleteOrder');
 
     });
