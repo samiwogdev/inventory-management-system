@@ -78,7 +78,7 @@ class ProductController extends Controller
                 'supplier_id' => 'required|integer|exists:suppliers,id',
                 'category_id' => 'required|integer|exists:categories,id',
                 'name' => 'required|string|max:100|unique:products,name',
-               'sku' => 'required|string|min:6|max:6',
+                'sku' => 'required|string|min:6|max:6',
                 'unitPrice' => 'required|numeric|min:0',
                 'quantity' => 'required|integer|min:0',
                 'reorderLevel' => 'required|integer|min:0',

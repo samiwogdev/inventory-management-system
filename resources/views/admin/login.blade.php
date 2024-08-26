@@ -26,7 +26,7 @@
         <label>Email</label>
         <div class="form-addons">
             <input name="email" type="text" placeholder="Enter your email address">
-            <img src="assets/img/icons/mail.svg" alt="img">
+            <img src="{{ url('assets/img/icons/mail.svg') }}" alt="img">
         </div>
     </div>
     <div class="form-login">
@@ -53,7 +53,7 @@
 </div>
 </div>
 <div class="login-img">
-    <img src="assets/img/login.jpg" alt="img">
+    <img src="{{ url('assets/img/login.jpg') }}" alt="img">
 </div>
 </div>
 </div>

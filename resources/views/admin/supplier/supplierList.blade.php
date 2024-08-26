@@ -9,7 +9,7 @@
             </div>
             <div class="page-btn">
                 <a href="{{url('admin/addSupplier')}}" class="btn btn-added">
-                    <img src="assets/img/icons/plus.svg" class="me-1" alt="img">Add Supplier
+                    <img src="{{ asset('assets/img/icons/plus.svg') }}" class="me-1" alt="img">Add Supplier
                 </a>
             </div>
         </div>

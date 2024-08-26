@@ -42,7 +42,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('/addSupplier', 'SupplierController@store');
         Route::put('/updateSupplier/{id}', 'SupplierController@updateSupplier');
         Route::delete('/deleteSupplier/{id}', 'SupplierController@deleteSupplier')->name('admin.deleteSupplier');
-      
+
         //product
         Route::get('/productList', 'ProductController@showProductList');
         Route::get('/addProduct', 'ProductController@showAddProduct');
@@ -68,6 +68,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::put('/updateStatus/{id}', 'OrdersController@updateStatus')->name('admin.updateStatus');;
         Route::delete('/deleteOrder/{id}', 'OrdersController@deleteOrder')->name('admin.deleteOrder');
 
+        // notification 
+        Route::put('/notifications', 'NotificationController@clear');
     });
 });
 
