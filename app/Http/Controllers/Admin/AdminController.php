@@ -7,7 +7,6 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-//use Auth;
 
 class AdminController extends Controller
 {
@@ -17,6 +16,7 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
+    //zcheck admin password
     public function checkAdminPassword(Request $request)
     {
         $data = $request->all();
@@ -27,6 +27,7 @@ class AdminController extends Controller
         }
     }
 
+    //update Admin Password
     public function updateAdminPassword(Request $request)
     {
         if ($request->isMethod('put')) {

@@ -112,7 +112,7 @@
                                         @csrf
                                         @method('PUT')
                                         <a href="javascript:void(0);"  onclick="document.getElementById('form-{{ $order->id }}').submit();" style="color: green;">
-                                            <img src="{{ asset('assets/img/icons/checked.png') }}" style="width: 30px;" class="icon-success" alt="approve">
+                                            <img src="{{ asset('assets/img/icons/checked.png') }}" style="width: 30px;" class="icon-success" alt="approved">
                                         </a>
                                     </form>
                                     @endif

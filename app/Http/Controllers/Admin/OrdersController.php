@@ -8,13 +8,29 @@ use Illuminate\Http\Request;
 use App\Models\OrderModel;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
 
-    //update order Status
+    // Check Product Reorder Level
+    protected function checkReorderLevel()
+    {
+        // Retrieve all products that need restocking
+        $products = Product::where('quantity', '<=', 'reorderLevel')->get();
+        
+        // Loop through the products and create notifications
+        foreach ($products as $product) {
+            $notification = new Notification();
+            $notification->data = "The product {$product->name} needs to be restocked.";
+            $notification->read = false; // Mark the notification as unread
+            $notification->save();
+        }
+    }
 
+
+    //update order Status
     public function updateStatus(Request $request, $id)
     {
         // Check if the request is using the PUT method
@@ -29,7 +45,8 @@ class OrdersController extends Controller
                 if ($order && $order->status !== "approved") {
                     // Update the order status
                     $order->update(['status' => 'approved']);
-
+                    //Trigger check Product reUrder level
+                    $this->checkReorderLevel();
                     // Redirect back with a success message
                     return redirect()->back()->with('message', 'Order updated successfully.');
                 } else {
@@ -94,7 +111,8 @@ class OrdersController extends Controller
                 'status' => 'pending',
                 'orderDate' => $orderData['orderDate'],
             ]);
-
+            //Trigger check Product reUrder level
+            $this->checkReorderLevel();
             // Optionally, product quantity can be reduced here instead of using the observer
             // $product->quantity -= $orderData['quantity'];
             // $product->save();
@@ -122,11 +140,6 @@ class OrdersController extends Controller
         $products = Product::all();
         return view('admin.orders.createOrder', compact('customers', 'products'));
     }
-
-    /**
-     * create a new order.
-     */
-
 
     /**
      * display the form to edit an order.
@@ -163,6 +176,8 @@ class OrdersController extends Controller
                 'orderDate' => $orders['orderDate'],
             ]);
 
+            //Trigger check Product reUrder level
+            $this->checkReorderLevel();
             return redirect()->route('admin.editOrder', ['id' => $order->id])
                 ->with('message', 'order updated successfully');
         }

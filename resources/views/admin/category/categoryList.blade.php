@@ -9,7 +9,7 @@
             </div>
             <div class="page-btn">
                 <a href="{{url('admin/addCategory')}}" class="btn btn-added">
-                    <img src="assets/img/icons/plus.svg" class="me-1" alt="img">Add Category
+                    <img src="{{ asset('assets/img/icons/plus.svg') }}" class="me-1" alt="img">Add Category
                 </a>
             </div>
         </div>
