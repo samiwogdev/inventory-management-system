@@ -12,65 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function viewOrders()
-    {
-        // Retrieve orders where the status is not 'delivered'
-        $orders = OrderModel::where('status', '!=', 'delivered')->get();
-    
-        // Return the view with the filtered orders
-        return view('admin.orders.viewOrders', compact('orders'));
-    }
-
-    /**
-     * dispaly form to add a new order.
-     */
-    public function showAddOrder()
-    {
-        $customers = CustomerModel::all();
-        $products = Product::all();
-        return view('admin.orders.createOrder', compact('customers', 'products'));
-    }
-
-    /**
-     * create a new order.
-     */
-    public function createOrder(Request $request)
-    {
-        if ($request->isMethod('post')) {
-            $orderData = $request->validate([
-                'customerId' => 'required|exists:customers,id',
-                'productId' => 'required|exists:products,id',
-                'quantity' => 'required|integer|min:1',
-                'description' => 'required|string',
-                'orderDate' => 'required|date',
-            ]);
-
-            OrderModel::create([
-                'customerId' => $orderData['customerId'],
-                'productId' => $orderData['productId'],
-                'quantity' => $orderData['quantity'],
-                'description' => $orderData['description'],
-                'status' => 'pending',
-                'orderDate' => $orderData['orderDate'],
-            ]);
-
-            return redirect()->back()->with('message', 'Order created successfully.');
-        }
-    }
-
-    /**
-     * display the form to edit an order.
-     */
-    public function showEditOrder($id)
-    {
-        $order = OrderModel::find($id);
-        $customers = CustomerModel::all();
-        $products = Product::all();
-        return view('admin.orders.editOrder', compact('order', 'customers', 'products'));
-    }
 
     //update order Status
 
@@ -118,6 +59,84 @@ class OrdersController extends Controller
             // Redirect back with an error message if the request method is not PUT
             return redirect()->back()->with('error', 'Invalid request method.');
         }
+    }
+
+    //create new Order
+    public function createOrder(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            // Validate the incoming request data
+            $orderData = $request->validate([
+                'customerId' => 'required|exists:customers,id',
+                'productId' => 'required|exists:products,id',
+                'quantity' => 'required|integer|min:1',
+                'description' => 'required|string',
+                'orderDate' => 'required|date',
+            ]);
+
+            // Retrieve the product and check its available quantity
+            $product = Product::find($orderData['productId']);
+
+            if (!$product) {
+                return redirect()->back()->with('error', 'Product not found.');
+            }
+
+            if ($product->quantity < $orderData['quantity']) {
+                // If the product quantity is less than the requested quantity, return an error message
+                return redirect()->back()->with('error', 'Insufficient product quantity. Only ' . $product->quantity . ' units available.');
+            }
+            // If sufficient quantity is available, create the order
+            OrderModel::create([
+                'customerId' => $orderData['customerId'],
+                'productId' => $orderData['productId'],
+                'quantity' => $orderData['quantity'],
+                'description' => $orderData['description'],
+                'status' => 'pending',
+                'orderDate' => $orderData['orderDate'],
+            ]);
+
+            // Optionally, product quantity can be reduced here instead of using the observer
+            // $product->quantity -= $orderData['quantity'];
+            // $product->save();
+
+            return redirect()->back()->with('message', 'Order created successfully.');
+        }
+    }
+
+    // Display a listing of the resource.
+    public function viewOrders()
+    {
+        // Retrieve orders where the status is not 'delivered'
+        $orders = OrderModel::where('status', '!=', 'delivered')->get();
+
+        // Return the view with the filtered orders
+        return view('admin.orders.viewOrders', compact('orders'));
+    }
+
+    /**
+     * dispaly form to add a new order.
+     */
+    public function showAddOrder()
+    {
+        $customers = CustomerModel::all();
+        $products = Product::all();
+        return view('admin.orders.createOrder', compact('customers', 'products'));
+    }
+
+    /**
+     * create a new order.
+     */
+
+
+    /**
+     * display the form to edit an order.
+     */
+    public function showEditOrder($id)
+    {
+        $order = OrderModel::find($id);
+        $customers = CustomerModel::all();
+        $products = Product::all();
+        return view('admin.orders.editOrder', compact('order', 'customers', 'products'));
     }
 
 
