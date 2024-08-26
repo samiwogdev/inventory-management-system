@@ -7,12 +7,15 @@
                 <h4>Order Management</h4>
                 <h6>View/Search Orders</h6>
             </div>
+            @if(Auth::guard('admin')->user()->status == 2)
             <div class="page-btn">
                 <a href="{{ url('admin/addOrder') }}" class="btn btn-added">
                     <img src="{{ asset('assets/img/icons/plus.svg') }}" class="me-1" alt="img">Add Order
                 </a>
             </div>
+            @endif
         </div>
+
         @if (Session::has('message'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ Session::get('message') }}
@@ -25,6 +28,17 @@
             {{ Session::get('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         @endif
 
         <div class="card">

@@ -1,4 +1,4 @@
-<div class="header shadow">
+<div class="header">
 
     <div class="header-left active">
         <a href="index.html" class="logo">
