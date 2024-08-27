@@ -72,7 +72,7 @@
                                 <td>{{ $category->description }}</td>
                                 <td>
                                     <a class="me-3" href="{{ url('admin/editCategory/' . $category->id) }}">
-                                        <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="Edit">
+                                        <img src="{{ asset('assets/img/icons/edit.svg') }}"  alt="Edit">
                                     </a>
                                     <a class="me-3" href="javascript:void(0);" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal{{ $category->id }}">

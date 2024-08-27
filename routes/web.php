@@ -70,6 +70,10 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 
         // notification 
         Route::put('/notifications', 'NotificationController@clear');
+
+        //sales
+        Route::get('/sales', 'SalesController@viewSales');
+
     });
 });
 
