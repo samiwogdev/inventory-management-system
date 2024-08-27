@@ -43,7 +43,7 @@
                                             <img src="{{ asset('assets/img/icons/checked.png') }}" style="width: 10px;" class="icon-success" alt="cart">
                                             <span class="noti-title">{{$notification->data }}</span>
                                         </p>
-                                        <p class="noti-time"><span class="notification-time text-danger">{{ $notification->created_at }}</span></p>
+                                        <p class="noti-time"><span class="notification-time text-danger">{{ $notification->created_at->diffForHumans() }}</span></p>
                                     </div>
                                 </div>
                             </a>

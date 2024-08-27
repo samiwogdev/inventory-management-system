@@ -18,14 +18,16 @@ class OrdersController extends Controller
     protected function checkReorderLevel()
     {
         // Retrieve all products that need restocking
-        $products = Product::where('quantity', '<=', 'reorderLevel')->get();
-        
+        $products = Product::get();
+
         // Loop through the products and create notifications
         foreach ($products as $product) {
-            $notification = new Notification();
-            $notification->data = "The product {$product->name} needs to be restocked.";
-            $notification->read = false; // Mark the notification as unread
-            $notification->save();
+            if ($product->quantity <= $product->reorderLevel) {
+                $notification = new Notification();
+                $notification->data = "The product {$product->name} needs to be restocked.";
+                $notification->read = false; // Mark the notification as unread
+                $notification->save();
+            }
         }
     }
 
