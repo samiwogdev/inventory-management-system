@@ -17,7 +17,7 @@
                 <li class="submenu">
                     <a href="javascript:void(0);"><img src="{{ url('assets//img/icons/sales1.svg')}}" alt="img"><span> Sales</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li><a href="#">Sales List</a></li>
+                        <li><a href="{{url('admin/sales')}}">Sales List</a></li>
 
                     </ul>
                 </li>
