@@ -104,16 +104,23 @@ class OrdersController extends Controller
                 // If the product quantity is less than the requested quantity, return an error message
                 return redirect()->back()->with('error', 'Insufficient product quantity. Only ' . $product->quantity . ' units available.');
             }
+
+            $price = $product->unitPrice;
+
+            // Calculate the total price
+            $total = $price * $orderData['quantity'];
+            
             // If sufficient quantity is available, create the order
             OrderModel::create([
                 'customerId' => $orderData['customerId'],
                 'productId' => $orderData['productId'],
                 'quantity' => $orderData['quantity'],
+                'total' => $total,
                 'description' => $orderData['description'],
                 'status' => 'pending',
                 'orderDate' => $orderData['orderDate'],
             ]);
-            //Trigger check Product reUrder level
+            //Trigger check Product reOrder level
             $this->checkReorderLevel();
             // Optionally, product quantity can be reduced here instead of using the observer
             // $product->quantity -= $orderData['quantity'];

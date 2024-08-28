@@ -38,6 +38,13 @@
                         <li><a href="{{url('admin/allUsers')}}">Users List</a></li>
                         @endif
                     </ul>
+                </li>
+                <li class="submenu">
+                    <a href="javascript:void(0);"><img src="{{ url('assets//img/icons/purchase1.svg')}}" alt="img"><span> Report</span> <span class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{{url('admin/generateReport')}}">Generate Report</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

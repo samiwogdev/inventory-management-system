@@ -16,8 +16,10 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
     //Add middleware
     Route::group(['middleware' => ['admin']], function () {
 
+        // Dashboard
+        Route::get('/dashboard', 'AdminController@showDashboard');
+        
         //User
-        Route::get('/dashboard', 'AdminController@dashboard');
         Route::get('/logout', 'AdminController@logout');
         Route::post('/check-current-password', 'AdminController@checkAdminPassword');
         Route::get('/editUser', 'AdminController@showEditUsers')->name('admin.editUser');;
@@ -73,6 +75,11 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 
         //sales
         Route::get('/sales', 'SalesController@viewSales');
+
+        // reports
+        Route::get('/reports', 'ReportController@generateReport');
+        Route::get('/generateReport', 'ReportController@showGenerateReport');
+        Route::get('/ReportToCsv', 'ReportController@exportReportToCsv');
 
     });
 });

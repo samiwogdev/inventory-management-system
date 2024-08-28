@@ -9,8 +9,8 @@
                         <span><img src="{{ asset('assets/img/icons/dash1.svg') }}" alt="img"></span>
                     </div>
                     <div class="dash-widgetcontent">
-                        <h5>$<span class="counters" data-count="307144.00">$307,144.00</span></h5>
-                        <h6>Total Purchase Due</h6>
+                        <h5><span class="counters" data-count="{{ $totalOrders }}">{{ $totalOrders }}</span></h5>
+                        <h6>Total Orders</h6>
                     </div>
                 </div>
             </div>
@@ -20,8 +20,8 @@
                         <span><img src="{{ asset('assets/img/icons/dash2.svg') }}" alt="img"></span>
                     </div>
                     <div class="dash-widgetcontent">
-                        <h5>$<span class="counters" data-count="4385.00">$4,385.00</span></h5>
-                        <h6>Total Sales Due</h6>
+                        <h5>$<span class="counters" data-count="{{ $totalSales }}">{{ $totalSales }}</span></h5>
+                        <h6>Total Sales</h6>
                     </div>
                 </div>
             </div>
@@ -31,8 +31,8 @@
                         <span><img src="{{ asset('assets/img/icons/dash3.svg') }}" alt="img"></span>
                     </div>
                     <div class="dash-widgetcontent">
-                        <h5>$<span class="counters" data-count="385656.50">385,656.50</span></h5>
-                        <h6>Total Sale Amount</h6>
+                        <h5>$<span class="counters" data-count="{{ $totalProducts }}">{{ $totalProducts }}</span></h5>
+                        <h6>Total Products</h6>
                     </div>
                 </div>
             </div>
@@ -42,12 +42,12 @@
                         <span><img src="{{ asset('assets/img/icons/dash4.svg') }}" alt="img"></span>
                     </div>
                     <div class="dash-widgetcontent">
-                        <h5>$<span class="counters" data-count="40000.00">400.00</span></h5>
-                        <h6>Total Sale Amount</h6>
+                        <h5><span class="counters" data-count="{{ $totalCustomers }}">{{ $totalCustomers }}</span></h5>
+                        <h6>Customers</h6>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 col-12 d-flex">
+            <!-- <div class="col-lg-3 col-sm-6 col-12 d-flex">
                 <div class="dash-count">
                     <div class="dash-counts">
                         <h4>100</h4>
@@ -90,25 +90,21 @@
                         <i data-feather="file"></i>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="row">
             <div class="col-lg-7 col-sm-12 col-12 d-flex">
                 <div class="card flex-fill">
                     <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                        <h5 class="card-title mb-0">Purchase & Sales</h5>
+                        <h5 class="card-title mb-0">Sales Trend</h5>
                         <div class="graph-sets">
                             <ul>
                                 <li>
                                     <span>Sales</span>
                                 </li>
-                                <li>
-                                    <span>Purchase</span>
-                                </li>
                             </ul>
-                            <div class="dropdown">
-                                <button class="btn btn-white btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                <!-- <button class="btn btn-white btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                     2022 <img src="{{ asset('assets/img/icons/dropdown.svg') }}" alt="img" class="ms-2">
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -121,8 +117,7 @@
                                     <li>
                                         <a href="javascript:void(0);" class="dropdown-item">2020</a>
                                     </li>
-                                </ul>
-                            </div>
+                                </ul> -->
                         </div>
                     </div>
                     <div class="card-body">
@@ -133,8 +128,8 @@
             <div class="col-lg-5 col-sm-12 col-12 d-flex">
                 <div class="card flex-fill">
                     <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                        <h4 class="card-title mb-0">Recently Added Products</h4>
-                        <div class="dropdown">
+                        <h4 class="card-title mb-0">Top Selling Products</h4>
+                        <!-- <div class="dropdown">
                             <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false" class="dropset">
                                 <i class="fa fa-ellipsis-v"></i>
                             </a>
@@ -146,59 +141,24 @@
                                     <a href="addproduct.html" class="dropdown-item">Product Add</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="card-body">
                         <div class="table-responsive dataview">
                             <table class="table datatable ">
                                 <thead>
                                     <tr>
-                                        <th>Sno</th>
                                         <th>Products</th>
-                                        <th>Price</th>
+                                        <th>Sales</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($topSellingProducts as $product)
                                     <tr>
-                                        <td>1</td>
-                                        <td class="productimgname">
-                                            <a href="productlist.html" class="product-img">
-                                                <img src="{{ asset('assets/img/product/product22.jpg') }}" alt="product">
-                                            </a>
-                                            <a href="productlist.html">Apple Earpods</a>
-                                        </td>
-                                        <td>$891.2</td>
+                                        <td>{{ $product->product->name }}</td>
+                                        <td>{{ $product->total_sold }}</td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td class="productimgname">
-                                            <a href="productlist.html" class="product-img">
-                                                <img src="{{ asset('assets/img/product/product23.jpg') }}" alt="product">
-                                            </a>
-                                            <a href="productlist.html">iPhone 11</a>
-                                        </td>
-                                        <td>$668.51</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td class="productimgname">
-                                            <a href="productlist.html" class="product-img">
-                                                <img src="{{ asset('assets/img/product/product24.jpg') }}" alt="product">
-                                            </a>
-                                            <a href="productlist.html">samsung</a>
-                                        </td>
-                                        <td>$522.29</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td class="productimgname">
-                                            <a href="productlist.html" class="product-img">
-                                                <img src="{{ asset('assets/img/product/product6.jpg') }}" alt="product">
-                                            </a>
-                                            <a href="productlist.html">Macbook Pro</a>
-                                        </td>
-                                        <td>$291.01</td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -206,7 +166,7 @@
                 </div>
             </div>
         </div>
-        <div class="card mb-0">
+        <!-- <div class="card mb-0">
             <div class="card-body">
                 <h4 class="card-title">Expired Products</h4>
                 <div class="table-responsive dataview">
@@ -278,7 +238,119 @@
                     </table>
                 </div>
             </div>
+        </div> -->
+        <div class="row">
+            <div class="col-lg-7 col-sm-12 col-12 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                        <h4 class="card-title mb-0">Recent Orders</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive dataview">
+                            <table class="table datatable">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Customer</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($recentOrders as $order)
+                                    <tr>
+                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $order->customer->name }}</td>
+                                        <td>${{ number_format($order->total, 2) }}</td>
+                                        <td>{{ $order->status }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-sm-12 col-12 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                        <h4 class="card-title mb-0">Low Stock Products</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive dataview">
+                            <table class="table datatable">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Stock</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($lowStockProducts as $product)
+                                    <tr>
+                                        <td>{{ $product->name }}</td>
+                                        <td>{{ $product->quantity }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    // Sales Trend Chart
+    var options = {
+        series: [{
+            name: 'Sales',
+            data: @json($salesTrend)
+        }],
+        chart: {
+            type: 'bar',
+            height: 350
+        },
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                columnWidth: '55%',
+                endingShape: 'rounded'
+            },
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            show: true,
+            width: 2,
+            colors: ['transparent']
+        },
+        xaxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        },
+        yaxis: {
+            title: {
+                text: '$ (thousands)'
+            }
+        },
+        fill: {
+            opacity: 1
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return "$ " + val + " thousands"
+                }
+            }
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#sales_chart"), options);
+    chart.render();
+</script>
 @endsection

@@ -4,16 +4,58 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\CustomerModel;
+use App\Models\OrderModel;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-
-    public function dashboard()
+    public function showDashboard()
     {
-        return view('admin.dashboard');
+        $totalOrders = OrderModel::count();
+        $totalSales = OrderModel::sum('total');
+        $totalProducts = Product::count();
+        $totalCustomers = CustomerModel::count();
+        
+        $salesTrend = OrderModel::select(
+            DB::raw('DATE(created_at) as date'),
+            DB::raw('SUM(total) as total_sales')
+        )
+            ->groupBy('date')
+            ->orderBy('date')
+            ->take(7)  // Last 7 days for simplicity
+            ->get();
+
+            $topSellingProducts = OrderModel::select('productId', DB::raw('SUM(quantity) as total_sold'))
+            ->with('product:id,name')
+            ->groupBy('ProductId')
+            ->orderByDesc('total_sold')
+            ->take(5)
+            ->get();
+
+            $recentOrders = OrderModel::with('customer:id,name')
+            ->latest()
+            ->take(10)
+            ->get();
+
+            $lowStockThreshold = 10; // You can adjust this value as needed
+            $lowStockProducts = Product::where('quantity', '<=', $lowStockThreshold)
+            ->get();
+
+        return view('admin.dashboard', compact(
+            'totalOrders', 
+            'totalSales', 
+            'totalProducts', 
+            'salesTrend',
+            'totalCustomers',
+            'topSellingProducts',
+            'recentOrders',
+            'lowStockProducts'
+        ));
     }
 
     //zcheck admin password
