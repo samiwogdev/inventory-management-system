@@ -77,6 +77,7 @@
                                 <th>Customer</th>
                                 <th>Product</th>
                                 <th>Quantity</th>
+                                <th>Total</th>
                                 <th>Description</th>
                                 <th>Status</th>
                                 <th>Order Date</th>
@@ -90,6 +91,7 @@
                                 <td>{{ $order->customer->name }}</td>
                                 <td>{{ $order->product->name }}</td>
                                 <td>{{ $order->quantity }}</td>
+                                <td>{{ $order->total }}</td>
                                 <td>{{ $order->description }}</td>
                                 <td>
                                     @if($order->status == 'pending')

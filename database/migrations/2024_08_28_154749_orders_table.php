@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customerId');
             $table->unsignedBigInteger('productId');
             $table->integer('quantity');
+            $table->decimal('total', 10, 2);
             $table->text('description');
             $table->enum('status', ['pending', 'approved', 'delivered'])->default('pending');
             $table->date('orderDate');
@@ -31,6 +32,7 @@ return new class extends Migration
                   ->on('products')
                   ->onDelete('cascade');
         });
+        
     }
 
     /**
