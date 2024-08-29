@@ -17,3 +17,20 @@
 //             $notification->save();
 //         }
 //     }
+
+
+// Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function () {
+
+//     //Add middleware
+//     Route::group(['middleware' => ['admin']], function () {
+
+//         Route::get('/reports', 'ReportController@generateReport');
+//         Route::get('/generateReport', 'ReportController@showGenerateReport');
+//         Route::get('/ReportToCsv', 'ReportController@exportReportToCsv');
+
+
+//     });
+// });
+
+
+// Could you generate a laravel test feature with the following routes, controller and models:

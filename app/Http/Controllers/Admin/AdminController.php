@@ -102,20 +102,21 @@ class AdminController extends Controller
     {
         if ($request->isMethod('post')) {
             $data = $request->all();
-
+    
             $rules = [
                 'email' => 'required|email|max:225',
                 'password' => 'required'
             ];
-
+    
             $customMessage = [
                 'email.required' => 'Email is required',
                 'email.email' => 'Valid Email is required',
-                'password.required' => ' Password is required'
+                'password.required' => 'Password is required'
             ];
-
+    
             $this->validate($request, $rules, $customMessage);
-            if (Auth::guard('admin')->attempt(['email' => $data["email"], 'password' => $data["password"]])) {
+    
+            if (Auth::guard('admin')->attempt(['email' => $data['email'], 'password' => $data['password']])) {
                 return redirect('admin/dashboard');
             } else {
                 return redirect()->back()->with("error_message", "Invalid email or password");
@@ -123,6 +124,7 @@ class AdminController extends Controller
         }
         return view('admin.login');
     }
+    
 
     public function logout()
     {

@@ -11,8 +11,8 @@ class Notification extends Model
 
         // Specify the fields that are mass assignable
         protected $fillable = [
-            'user_id', 
-            'type', 
+            // 'user_id', 
+            // 'type', 
             'data', 
             'read'
         ];
