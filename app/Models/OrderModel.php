@@ -17,6 +17,7 @@ class OrderModel extends Model
         'customerId',
         'productId',
         'quantity',
+        'total',
         'description',
         'status',
         'orderDate',

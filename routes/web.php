@@ -5,7 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.login');
 });
 
 Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function () {
@@ -16,10 +16,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
     //Add middleware
     Route::group(['middleware' => ['admin']], function () {
 
-        // Dashboard
+        // admin
         Route::get('/dashboard', 'AdminController@showDashboard');
-        
-        //User
         Route::get('/logout', 'AdminController@logout');
         Route::post('/check-current-password', 'AdminController@checkAdminPassword');
         Route::get('/editUser', 'AdminController@showEditUsers')->name('admin.editUser');;

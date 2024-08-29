@@ -20,7 +20,7 @@
                         <span><img src="{{ asset('assets/img/icons/dash2.svg') }}" alt="img"></span>
                     </div>
                     <div class="dash-widgetcontent">
-                        <h5>$<span class="counters" data-count="{{ $totalSales }}">{{ $totalSales }}</span></h5>
+                        <h5>£<span class="counters" data-count="{{ $totalSales }}">{{ $totalSales }}</span></h5>
                         <h6>Total Sales</h6>
                     </div>
                 </div>
@@ -28,10 +28,10 @@
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="dash-widget dash2">
                     <div class="dash-widgetimg">
-                        <span><img src="{{ asset('assets/img/icons/dash3.svg') }}" alt="img"></span>
+                        <span><img src="{{ asset('assets/img/icons/sales1.svg') }}" alt="img"></span>
                     </div>
                     <div class="dash-widgetcontent">
-                        <h5>$<span class="counters" data-count="{{ $totalProducts }}">{{ $totalProducts }}</span></h5>
+                        <h5><span class="counters" data-count="{{ $totalProducts }}">{{ $totalProducts }}</span></h5>
                         <h6>Total Products</h6>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="dash-widget dash3">
                     <div class="dash-widgetimg">
-                        <span><img src="{{ asset('assets/img/icons/dash4.svg') }}" alt="img"></span>
+                        <span><img src="{{ asset('assets/img/icons/users1.svg') }}" alt="img"></span>
                     </div>
                     <div class="dash-widgetcontent">
                         <h5><span class="counters" data-count="{{ $totalCustomers }}">{{ $totalCustomers }}</span></h5>

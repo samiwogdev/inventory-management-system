@@ -130,7 +130,7 @@ class OrdersController extends Controller
         }
     }
 
-    // Display a listing of the resource.
+    // Display a listing of orders.
     public function viewOrders()
     {
         // Retrieve orders where the status is not 'delivered'
